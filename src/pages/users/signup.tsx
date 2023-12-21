@@ -1,5 +1,5 @@
 import SignupForm from "@/Client/Components/SignupForm/SignupForm";
-import { getAppName } from "@/lib/Constants";
+import { getAppName } from "@/Utils/Constants";
 import Head from "next/head";
 import React from "react";
 

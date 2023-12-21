@@ -4,7 +4,7 @@ import {
   laptopScreen,
   mobileScreen,
   tabletScreen,
-} from "@/styles/Global.styled";
+} from "@/Styles/Global.styled";
 import styled, { css } from "styled-components";
 
 export const LoginFormStyled = styled.form`

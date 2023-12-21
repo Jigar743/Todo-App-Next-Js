@@ -4,7 +4,7 @@ import React from "react";
 import { useMutation, useQuery, useSubscription } from "@apollo/client";
 import { GET_MESSAGE } from "@/Server/Config/querries";
 import { ADD_MESSAGE } from "@/Server/Config/mutations";
-import { getAppName } from "@/lib/Constants";
+import { getAppName } from "@/Utils/Constants";
 
 export default function LoginPage() {
   const { data, loading, error } = useQuery(GET_MESSAGE);

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import favicon from "../../../styles/favicon/favicon.ico";
-import { getAppName } from "@/lib/Constants";
+import { getAppName } from "@/Utils/Constants";
 
 export default function CustomHead() {
   return (

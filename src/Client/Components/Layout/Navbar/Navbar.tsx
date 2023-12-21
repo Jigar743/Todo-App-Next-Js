@@ -1,4 +1,4 @@
-import { getAppName } from "@/lib/Constants";
+import { getAppName } from "@/Utils/Constants";
 import { useRouter } from "next/router";
 import { PropsWithChildren } from "react";
 
