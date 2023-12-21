@@ -1,11 +1,18 @@
+import { getAppName } from "@/Utils/Constants";
+import Head from "next/head";
 import React from "react";
 
 export default function TodosPage() {
   return (
-    <div>
-      Todos Page
-      <p>search and add todos</p>
-      <p>Listing of all todos</p>
-    </div>
+    <>
+      <Head>
+        <title>{`${getAppName()} | Todos`}</title>
+      </Head>
+
+      <div>
+        <p>search and add todos</p>
+        <p>Listing of all todos</p>
+      </div>
+    </>
   );
 }

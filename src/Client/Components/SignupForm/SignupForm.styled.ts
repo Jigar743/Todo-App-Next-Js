@@ -4,7 +4,7 @@ import {
   laptopScreen,
   mobileScreen,
   tabletScreen,
-} from "@/styles/Global.styled";
+} from "@/Styles/Global.styled";
 import styled from "styled-components";
 import { css } from "styled-components";
 

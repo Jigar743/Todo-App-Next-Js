@@ -1,7 +1,9 @@
-import { RootState } from "@/Store/store";
+import { RootState } from "@/Client/Store/store";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
-import { setIsAuthenticated } from "@/Store/AuthSlice";
+import { setIsAuthenticated } from "@/Client/Store/AuthSlice";
+import Head from "next/head";
+import { getAppName } from "@/Utils/Constants";
 
 export default function HomePage() {
   const isAuthenticated = useSelector(
@@ -20,8 +22,13 @@ export default function HomePage() {
   }, [dispatch]);
 
   return (
-    <div>
-      {isAuthenticated ? <button>logout</button> : <button>login</button>}
-    </div>
+    <>
+      <Head>
+        <title>{`${getAppName()} | Home`}</title>
+      </Head>
+      <div>
+        {isAuthenticated ? <button>logout</button> : <button>login</button>}
+      </div>
+    </>
   );
 }

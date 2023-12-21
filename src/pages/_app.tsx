@@ -1,7 +1,7 @@
-import CustomeThemeProvider from "@/Components/ContextProvider/CustomeThemeProvider";
-import { GlobalStyle } from "@/styles/Global.styled";
-import MainLayout from "@/Components/Layout/MainLayout/MainLayout";
-import { store } from "@/Store/store";
+import CustomeThemeProvider from "@/Client/Components/ContextProvider/CustomeThemeProvider";
+import { GlobalStyle } from "@/Styles/Global.styled";
+import MainLayout from "@/Client/Components/Layout/MainLayout/MainLayout";
+import { store } from "@/Client/Store/store";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";

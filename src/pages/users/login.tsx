@@ -1,10 +1,10 @@
-import LoginForm from "@/Components/LoginForm/LoginForm";
+import LoginForm from "@/Client/Components/LoginForm/LoginForm";
 import Head from "next/head";
 import React from "react";
 import { useMutation, useQuery, useSubscription } from "@apollo/client";
-import { GET_MESSAGE } from "@/Config/querries";
-import { ADD_MESSAGE } from "@/Config/mutations";
-import { getAppName } from "@/lib/Constants";
+import { GET_MESSAGE } from "@/Server/Config/querries";
+import { ADD_MESSAGE } from "@/Server/Config/mutations";
+import { getAppName } from "@/Utils/Constants";
 
 export default function LoginPage() {
   const { data, loading, error } = useQuery(GET_MESSAGE);

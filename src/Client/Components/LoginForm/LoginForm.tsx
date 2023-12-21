@@ -30,7 +30,7 @@ export default function LoginForm() {
         </button>
       </LoginFormStyled>
       <p className="flex gap-2">
-        Don't have an account?
+        Dont have an account?
         <Link className="text-orange-200" href="/users/signup">
           Sign up
         </Link>
