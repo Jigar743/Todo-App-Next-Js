@@ -1,5 +1,5 @@
-import { Resolvers } from "@/Config/Resolvers";
-import { TypeDefs } from "@/Config/TypeDefs";
+import { Resolvers } from "@/Server/Config/Resolvers";
+import { TypeDefs } from "@/Server/Config/TypeDefs";
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { NextRequest } from "next/server";

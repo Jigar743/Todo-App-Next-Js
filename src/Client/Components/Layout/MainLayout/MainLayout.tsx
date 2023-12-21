@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import { getAppName } from "@/lib/Constants";
+import CustomHead from "../../CusomHead/CustomHead";
 type MainLayoutPropsType = {
   children: React.ReactNode;
 };
@@ -10,9 +10,7 @@ type MainLayoutPropsType = {
 export default function MainLayout({ children }: MainLayoutPropsType) {
   return (
     <>
-      <Head>
-        <title>{`${getAppName()}`}</title>
-      </Head>
+      <CustomHead />
       <div className="flex flex-col gap-2 h-[100vh]">
         <header className="flex justify-between h-[10%] bg-slate-700 items-center px-8 text-white">
           <Navbar />
