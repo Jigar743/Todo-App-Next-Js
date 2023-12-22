@@ -6,6 +6,7 @@ export type CurrentUserType = {
 
 export type AuthStateType = {
   isAuthenticated: boolean;
-  token: string;
-  currentUser: CurrentUserType;
+  token: null | string;
+  currentUser: CurrentUserType | null;
 };
+

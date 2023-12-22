@@ -1,7 +1,14 @@
 import { gql } from "@apollo/client";
 
-export const GET_MESSAGE = gql`
+export const GET_TODOS = gql`
   query {
-    getMessage
+    todos: getTodos {
+      id
+      Title
+      Description
+      CreatedAt
+      UpdatedAt
+      Completed
+    }
   }
 `;

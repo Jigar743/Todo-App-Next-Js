@@ -3,6 +3,8 @@ import { TypeDefs } from "@/Server/Config/TypeDefs";
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { NextRequest } from "next/server";
+import fs from "fs";
+import path from "path";
 
 const server = new ApolloServer({
   typeDefs: TypeDefs,

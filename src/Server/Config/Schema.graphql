@@ -1,0 +1,17 @@
+scalar Date
+
+type Query {
+  getTodos: [todos]
+}
+
+type Mutation {
+  addMessage(message: String): String
+}
+
+type todos {
+  id: ID!
+  Title: String!
+  Description: String!
+  CreatedAt: Date!
+  UpdatedAt: Date!
+}
