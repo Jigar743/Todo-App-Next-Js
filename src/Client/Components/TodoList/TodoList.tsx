@@ -7,8 +7,8 @@ import {
   EditFilled,
 } from "@ant-design/icons";
 import { useMutation } from "@apollo/client";
-import { DELETE_TODO, UPDATE_TODO } from "@/Server/Config/mutations";
-import { GET_TODOS } from "@/Server/Config/querries";
+import { DELETE_TODO } from "@/Client/Mutation/Todo.mutation";
+import { GET_TODOS } from "@/Client/Queries/Todo.query";
 import { converUTCtoLoalTime } from "@/Utils/helper";
 
 export default function TodoList({

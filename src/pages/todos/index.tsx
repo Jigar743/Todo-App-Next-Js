@@ -1,7 +1,7 @@
 import AddEditTodoSection from "@/Client/Components/AddEditTodoSection/AddEditTodoSection";
 import LoadingCmp from "@/Client/Components/LoadingScreen/LoadingCmp";
 import TodoList from "@/Client/Components/TodoList/TodoList";
-import { GET_TODOS } from "@/Server/Config/querries";
+import { GET_TODOS } from "@/Client/Queries/Todo.query";
 import { TodoType } from "@/Types/TodoTypes";
 import { getAppName } from "@/Utils/Constants";
 import { useQuery } from "@apollo/client";

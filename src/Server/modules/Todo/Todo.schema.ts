@@ -1,10 +1,12 @@
-export const TypeDefs = `#graphql
+import gql from "graphql-tag";
+
+export const TodoTypeDefs = gql`
   scalar Date
 
   type Query {
     getTodos: [Todo!]!
   }
-  
+
   type Mutation {
     addTodo(input: AddTodoInput): String
     updateTodo(input: UpdateTodoInput): String
@@ -25,13 +27,13 @@ export const TypeDefs = `#graphql
     description: String!
   }
 
-  input UpdateTodoInput{
+  input UpdateTodoInput {
     id: Int
     title: String!
     description: String!
   }
 
-  input DeleteTodoInput{
+  input DeleteTodoInput {
     id: Int
   }
 `;

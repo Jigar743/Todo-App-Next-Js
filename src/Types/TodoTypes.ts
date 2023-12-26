@@ -10,3 +10,18 @@ export type TodoType = {
 export type TodosInitialState = {
   todos: Array<TodoType>;
 };
+
+export type CreateTodoInputType = {
+  title: string;
+  description: string;
+};
+
+export type UpdateTodoInputType = {
+  title: string;
+  description: string;
+  id: number;
+};
+
+export type DeleteTodoInputType = {
+  id: number;
+};

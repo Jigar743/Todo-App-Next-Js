@@ -1,5 +1,5 @@
-import { ADD_TODO, UPDATE_TODO } from "@/Server/Config/mutations";
-import { GET_TODOS } from "@/Server/Config/querries";
+import { ADD_TODO, UPDATE_TODO } from "@/Client/Mutation/Todo.mutation";
+import { GET_TODOS } from "@/Client/Queries/Todo.query";
 import { TodoType } from "@/Types/TodoTypes";
 import { useMutation } from "@apollo/client";
 import { useEffect, useMemo, useState } from "react";
