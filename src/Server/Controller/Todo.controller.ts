@@ -10,7 +10,7 @@ class Todos extends BaseDatabase {
     super();
   }
 
-  async fetchTodos() {
+  async FetchTodos() {
     if (this.DbInstance !== null) {
       const [rows] = await this.DbInstance.query("select * from todos");
       return rows;
@@ -45,6 +45,6 @@ class Todos extends BaseDatabase {
   }
 }
 
-const Todo = new Todos();
+const TodoController = new Todos();
 
-export default Todo;
+export default TodoController;

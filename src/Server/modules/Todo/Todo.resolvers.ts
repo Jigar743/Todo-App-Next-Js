@@ -1,4 +1,4 @@
-import Todo from "@/Server/Controller/Todo.controller";
+import TodoController from "@/Server/Controller/Todo.controller";
 import {
   CreateTodoInputType,
   DeleteTodoInputType,
@@ -8,19 +8,19 @@ import {
 export const TodoResolvers = {
   Query: {
     getTodos: async (_parent: any, args: any, context: any) => {
-      return await Todo.fetchTodos();
+      return await TodoController.FetchTodos();
     },
   },
 
   Mutation: {
     addTodo: async (_: any, { input }: { input: CreateTodoInputType }) => {
-      return await Todo.CreateTodo(input);
+      return await TodoController.CreateTodo(input);
     },
     updateTodo: async (_: any, { input }: { input: UpdateTodoInputType }) => {
-      return await Todo.UpdateTodo(input);
+      return await TodoController.UpdateTodo(input);
     },
     deleteTodo: async (_: any, { input }: { input: DeleteTodoInputType }) => {
-      return await Todo.DeleteTodo(input);
+      return await TodoController.DeleteTodo(input);
     },
   },
 

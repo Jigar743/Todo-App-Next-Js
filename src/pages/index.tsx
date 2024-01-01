@@ -6,7 +6,7 @@ import Head from "next/head";
 import { getAppName } from "@/Utils/Constants";
 
 export default function HomePage() {
-  const { isAuthenticated, currentUser, token } = useSelector(
+  const { isAuthenticated } = useSelector(
     (state: RootState) => state.authReducer
   );
 

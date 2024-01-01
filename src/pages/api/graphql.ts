@@ -10,7 +10,7 @@ const server = new ApolloServer({
     console.error("Error from graphql server side:", error);
     return error;
   },
-  includeStacktraceInErrorResponses: true,
+  includeStacktraceInErrorResponses: false,
 });
 
 export default startServerAndCreateNextHandler<NextRequest>(server, {

@@ -2,20 +2,22 @@ import { Connection, createConnection } from "mysql2/promise";
 
 class BaseDatabase {
   DbInstance: Connection | null = null;
+  databaseConfig = {
+    host: process.env.NEXT_PUBLIC_DATABASE_HOST_NAME,
+    user: process.env.NEXT_PUBLIC_DATABASE_USER_NAME,
+    password: process.env.NEXT_PUBLIC_DATABASE_USER_NAME,
+    database: process.env.NEXT_PUBLIC_DATABASE_NAME,
+  };
 
   constructor() {
-    this.createDatabaseInstance();
+    if (this.DbInstance === null) {
+      this.createDatabaseInstance();
+    }
   }
 
   async createDatabaseInstance() {
     try {
-      const pool = await createConnection({
-        host: process.env.NEXT_PUBLIC_DATABASE_HOST_NAME,
-        user: process.env.NEXT_PUBLIC_DATABASE_USER_NAME,
-        password: process.env.NEXT_PUBLIC_DATABASE_USER_NAME,
-        database: process.env.NEXT_PUBLIC_DATABASE_NAME,
-      });
-
+      const pool = await createConnection(this.databaseConfig);
       this.DbInstance = pool;
     } catch (error) {
       console.log("Error while connecting with the database", error);
