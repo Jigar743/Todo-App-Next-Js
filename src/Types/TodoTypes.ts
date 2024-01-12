@@ -2,8 +2,8 @@ export type TodoType = {
   id: number;
   Title: string;
   Description: string;
-  CreatedAt: string;
-  UpdatedAt: string;
+  CreatedAt: Date;
+  UpdatedAt: Date;
   Completed: boolean;
 };
 

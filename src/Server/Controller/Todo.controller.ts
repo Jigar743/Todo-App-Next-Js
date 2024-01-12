@@ -11,36 +11,44 @@ class Todos extends BaseDatabase {
   }
 
   async FetchTodos() {
-    if (this.DbInstance !== null) {
-      const [rows] = await this.DbInstance.query("select * from todos");
+    try {
+      const [rows] = await this.DbInstance?.query("select * from todos");
       return rows;
+    } catch (error) {
+      throw new Error("Error while fetching todos.");
     }
   }
 
   async CreateTodo(input: CreateTodoInputType) {
-    if (this.DbInstance !== null) {
-      await this.DbInstance.query(
+    try {
+      await this.DbInstance?.query(
         "insert into todos (Title, Description) values (?, ?)",
         [input.title, input.description]
       );
       return "Todo Created successfully!";
+    } catch (error) {
+      throw new Error("Error while creating a todo.");
     }
   }
 
   async UpdateTodo(input: UpdateTodoInputType) {
-    if (this.DbInstance !== null) {
-      await this.DbInstance.query(
+    try {
+      await this.DbInstance?.query(
         "update todos set title=?, description=? where id=?",
         [input.title, input.description, input.id]
       );
       return "Todo Updated Successfully!";
+    } catch (error) {
+      throw new Error("Error while updating a todo.");
     }
   }
 
   async DeleteTodo(input: DeleteTodoInputType) {
-    if (this.DbInstance !== null) {
-      await this.DbInstance.query("delete from todos where id=?", [input.id]);
+    try {
+      await this.DbInstance?.query("delete from todos where id=?", [input.id]);
       return "Todo Deleted Successfully!";
+    } catch (error) {
+      throw new Error("Error while deleting a todo.");
     }
   }
 }

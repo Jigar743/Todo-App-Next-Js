@@ -1,3 +1,4 @@
+import BaseDatabase from "@/Server/Controller/BaseDatabase";
 import { resolvers, typeDefs } from "@/Server/modules";
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
@@ -14,5 +15,7 @@ const server = new ApolloServer({
 });
 
 export default startServerAndCreateNextHandler<NextRequest>(server, {
-  context: async (req, res) => ({ req, res }),
+  context: async (req, res) => {
+    return { req, res };
+  },
 });

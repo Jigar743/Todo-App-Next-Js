@@ -4,13 +4,13 @@ export const TodoTypeDefs = gql`
   scalar Date
 
   type Query {
-    getTodos: [Todo!]!
+    getTodos: [Todo!]
   }
 
   type Mutation {
-    addTodo(input: AddTodoInput): String
-    updateTodo(input: UpdateTodoInput): String
-    deleteTodo(input: DeleteTodoInput): String
+    addTodo(input: AddTodoInput): String!
+    updateTodo(input: UpdateTodoInput): String!
+    deleteTodo(input: DeleteTodoInput): String!
   }
 
   type Todo {
@@ -19,7 +19,7 @@ export const TodoTypeDefs = gql`
     Description: String!
     CreatedAt: Date!
     UpdatedAt: Date!
-    Completed: Boolean
+    Completed: Boolean!
   }
 
   input AddTodoInput {
@@ -28,12 +28,13 @@ export const TodoTypeDefs = gql`
   }
 
   input UpdateTodoInput {
-    id: Int
-    title: String!
-    description: String!
+    id: Int!
+    title: String
+    description: String
+    completed: Boolean
   }
 
   input DeleteTodoInput {
-    id: Int
+    id: Int!
   }
 `;

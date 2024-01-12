@@ -4,7 +4,7 @@ import { LoadingCmpStyled } from "./LoadingCmp.styled";
 export default function LoadingCmp() {
   return (
     <LoadingCmpStyled>
-      <LoadingOutlined />
+      <LoadingOutlined style={{ fontSize: "20px" }} />
       Loading...
     </LoadingCmpStyled>
   );

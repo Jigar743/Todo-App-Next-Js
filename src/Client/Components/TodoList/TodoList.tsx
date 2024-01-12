@@ -1,11 +1,6 @@
 import { TodoType } from "@/Types/TodoTypes";
 import { TodoListContainer } from "./TodoList.styled";
-import {
-  CheckOutlined,
-  CloseOutlined,
-  DeleteFilled,
-  EditFilled,
-} from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/client";
 import { DELETE_TODO } from "@/Client/Mutation/Todo.mutation";
 import { GET_TODOS } from "@/Client/Queries/Todo.query";
@@ -39,12 +34,11 @@ export default function TodoList({
             <div className="todo-title">{todo.Title}</div>
             <div className="todo-description">{todo.Description}</div>
             <div className="todo-actions">
-              {/* {todo.Completed ? <CheckOutlined /> : <CloseOutlined />} */}
-              <EditFilled
+              <EditOutlined
                 onClick={() => openEditTodo(todo)}
                 className="edit bg-orange-200"
               />
-              <DeleteFilled
+              <DeleteOutlined
                 className="delete bg-orange-200"
                 onClick={() => handleDeleteTodo(todo.id)}
               />

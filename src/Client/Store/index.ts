@@ -7,6 +7,7 @@ export const store = configureStore({
     authReducer,
     todoReducer,
   },
+  devTools: true,
 });
 
 export type AppDispatch = typeof store.dispatch;

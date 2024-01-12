@@ -16,11 +16,13 @@ class BaseDatabase {
   }
 
   async createDatabaseInstance() {
-    try {
-      const pool = await createConnection(this.databaseConfig);
-      this.DbInstance = pool;
-    } catch (error) {
-      console.log("Error while connecting with the database", error);
+    if (this.DbInstance === null) {
+      try {
+        const pool = await createConnection(this.databaseConfig);
+        this.DbInstance = pool;
+      } catch (error) {
+        console.log("Error while connecting with the database", error);
+      }
     }
   }
 

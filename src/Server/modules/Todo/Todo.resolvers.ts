@@ -7,7 +7,7 @@ import {
 
 export const TodoResolvers = {
   Query: {
-    getTodos: async (_parent: any, args: any, context: any) => {
+    getTodos: async (_: any, args: any, context: any) => {
       return await TodoController.FetchTodos();
     },
   },

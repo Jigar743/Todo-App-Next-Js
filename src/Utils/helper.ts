@@ -1,4 +1,4 @@
-export const converUTCtoLoalTime = (utcDateString: string) => {
+export const converUTCtoLoalTime = (utcDateString: Date) => {
   const utcDate = new Date(utcDateString);
 
   const options = {
