@@ -6,7 +6,10 @@ export default function LoginForm() {
   return (
     <div className="flex flex-col items-center gap-3">
       <h1 className="text-center font-extrabold text-3xl">Welcome</h1>
-      <LoginFormStyled className={`shadow-md`}>
+      <LoginFormStyled
+        className={`shadow-md`}
+        onSubmit={(e) => e.preventDefault()}
+      >
         <div>
           <label htmlFor="email">Email</label>
           <input

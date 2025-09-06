@@ -12,7 +12,11 @@ class Todos extends BaseDatabase {
 
   async FetchTodos() {
     try {
-      const [rows] = await this.DbInstance?.query("select * from todos");
+      const result = await this.getDb()?.query("select * from todos");
+      if (!result) {
+        throw new Error("Database query failed.");
+      }
+      const [rows] = result;
       return rows;
     } catch (error) {
       throw new Error("Error while fetching todos.");
@@ -21,7 +25,7 @@ class Todos extends BaseDatabase {
 
   async CreateTodo(input: CreateTodoInputType) {
     try {
-      await this.DbInstance?.query(
+      await this.getDb()?.query(
         "insert into todos (Title, Description) values (?, ?)",
         [input.title, input.description]
       );
@@ -33,7 +37,7 @@ class Todos extends BaseDatabase {
 
   async UpdateTodo(input: UpdateTodoInputType) {
     try {
-      await this.DbInstance?.query(
+      await this.getDb()?.query(
         "update todos set title=?, description=? where id=?",
         [input.title, input.description, input.id]
       );
@@ -45,7 +49,7 @@ class Todos extends BaseDatabase {
 
   async DeleteTodo(input: DeleteTodoInputType) {
     try {
-      await this.DbInstance?.query("delete from todos where id=?", [input.id]);
+      await this.getDb()?.query("delete from todos where id=?", [input.id]);
       return "Todo Deleted Successfully!";
     } catch (error) {
       throw new Error("Error while deleting a todo.");

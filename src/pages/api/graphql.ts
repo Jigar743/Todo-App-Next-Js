@@ -1,4 +1,3 @@
-import BaseDatabase from "@/Server/Controller/BaseDatabase";
 import { resolvers, typeDefs } from "@/Server/modules";
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";

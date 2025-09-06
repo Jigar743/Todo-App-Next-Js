@@ -1,40 +1,43 @@
-import { Connection, createConnection } from "mysql2/promise";
+import { Pool, createPool } from "mysql2/promise";
 
-class BaseDatabase {
-  DbInstance: Connection | null = null;
-  databaseConfig = {
+// Reuse the pool across hot reloads (Next.js dev mode)
+let pool: Pool;
+
+if (!(globalThis as any)._mysqlPool) {
+  console.log("Creating new database pool...");
+  (globalThis as any)._mysqlPool = createPool({
     host: process.env.NEXT_PUBLIC_DATABASE_HOST_NAME,
+    port: process.env.NEXT_PUBLIC_DATABASE_HOST_PORT
+      ? parseInt(process.env.NEXT_PUBLIC_DATABASE_HOST_PORT, 10)
+      : 3306,
     user: process.env.NEXT_PUBLIC_DATABASE_USER_NAME,
     password: process.env.NEXT_PUBLIC_DATABASE_USER_NAME,
     database: process.env.NEXT_PUBLIC_DATABASE_NAME,
-  };
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+  });
+}
 
-  constructor() {
-    if (this.DbInstance === null) {
-      this.createDatabaseInstance();
-    }
-  }
+pool = (globalThis as any)._mysqlPool;
 
-  async createDatabaseInstance() {
-    if (this.DbInstance === null) {
-      try {
-        const pool = await createConnection(this.databaseConfig);
-        this.DbInstance = pool;
-      } catch (error) {
-        console.log("Error while connecting with the database", error);
-      }
-    }
+class BaseDatabase {
+  protected getDb() {
+    return pool;
   }
 
   async DatabaseDisconnect() {
     try {
-      if (this.DbInstance) {
-        await this.DbInstance.end();
-        console.log("Database is now disconnected!");
-      }
+      await pool.end();
+      console.log("Database pool closed!");
+      (globalThis as any)._mysqlPool = null;
     } catch (error) {
-      console.log("error while disconnecting the database", error);
+      console.log("Error while closing database pool", error);
     }
+  }
+
+  isDbConnected() {
+    return !!pool;
   }
 }
 

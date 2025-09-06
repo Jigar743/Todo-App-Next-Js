@@ -19,6 +19,12 @@ function Navbar({ children }: PropsWithChildren<NavbarPropsType>) {
           <li onClick={() => router.push("/todos")} className="hover:underline">
             Todos
           </li>
+          <li
+            onClick={() => router.push("/users/all")}
+            className="hover:underline"
+          >
+            Users
+          </li>
           <li>
             <button
               onClick={() => router.push("/users/login")}

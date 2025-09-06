@@ -53,7 +53,7 @@ export default function SignupForm() {
           <div className="sm:w-full md:w-[50%]">
             <label htmlFor="first_name">First name</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow border w-full rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               id="first_name"
               placeholder="Enter first name"
               type="text"
@@ -65,7 +65,7 @@ export default function SignupForm() {
           <div className="sm:w-full md:w-[50%]">
             <label htmlFor="last_name">Last name</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               id="last_name"
               placeholder="Enter last name"
               type="text"
@@ -90,7 +90,7 @@ export default function SignupForm() {
         <div className="flex flex-col">
           <label htmlFor="passw">Password</label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
             id="passw"
             placeholder="Enter password"
             type="password"
@@ -102,7 +102,7 @@ export default function SignupForm() {
         <div className="flex flex-col">
           <label htmlFor="c_password">Confirm password</label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
             id="c_password"
             placeholder="Enter confirm password"
             type="password"

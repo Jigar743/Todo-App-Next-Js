@@ -9,7 +9,7 @@ class Users extends BaseDatabase {
 
   async fetchAllUsers() {
     try {
-      const [rows] = await this.DbInstance?.query("select * from users");
+      const [rows] = await this.getDb()?.query("select * from users");
       return rows;
     } catch (error) {
       throw new Error("Error while fetching users.");
@@ -34,7 +34,7 @@ class Users extends BaseDatabase {
         ...input,
         password: await this.generateHashPassword(input.password),
       };
-      await this.DbInstance?.query(
+      await this.getDb()?.query(
         "insert into users (firstName, lastName, email, password) values (?, ?, ?, ?)",
         [user.firstName, user.lastName, user.email, user.password]
       );
@@ -43,7 +43,7 @@ class Users extends BaseDatabase {
       throw new Error("Error while creating an account!");
     }
   }
-  
+
   async UpdateUser() {}
   async deleteUser() {}
   async userLogin() {}
