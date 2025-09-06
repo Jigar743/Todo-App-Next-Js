@@ -1,14 +1,21 @@
-import { Resolvers } from "@/Server/Config/Resolvers";
-import { TypeDefs } from "@/Server/Config/TypeDefs";
+import BaseDatabase from "@/Server/Controller/BaseDatabase";
+import { resolvers, typeDefs } from "@/Server/modules";
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { NextRequest } from "next/server";
 
 const server = new ApolloServer({
-  typeDefs: TypeDefs,
-  resolvers: Resolvers,
+  typeDefs,
+  resolvers,
+  formatError: (error) => {
+    console.error("Error from graphql server side:", error);
+    return error;
+  },
+  includeStacktraceInErrorResponses: false,
 });
 
 export default startServerAndCreateNextHandler<NextRequest>(server, {
-  context: async (req, res) => ({ req, res }),
+  context: async (req, res) => {
+    return { req, res };
+  },
 });
