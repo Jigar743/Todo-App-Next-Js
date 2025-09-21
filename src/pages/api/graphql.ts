@@ -15,6 +15,7 @@ const server = new ApolloServer({
 
 export default startServerAndCreateNextHandler<NextRequest>(server, {
   context: async (req, res) => {
+    // console.log({ token: req.headers });
     return { req, res };
   },
 });

@@ -1,5 +1,5 @@
 import { TodoType } from "@/Types/TodoTypes";
-import { TodoListContainer } from "./TodoList.styled";
+import { TodoListContainer, TodoCard } from "./TodoList.styled";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/client";
 import { DELETE_TODO } from "@/Client/Mutation/Todo.mutation";
@@ -17,36 +17,31 @@ export default function TodoList({
 
   const handleDeleteTodo = (id: number) => {
     DeleteTodo({
-      variables: {
-        input: {
-          id,
-        },
-      },
+      variables: { input: { id } },
       refetchQueries: [{ query: GET_TODOS }],
     });
   };
 
   return (
-    <TodoListContainer className="border rounded">
-      {Todos?.length > 0 &&
-        Todos?.map((todo) => (
-          <div className="todo-container border rounded" key={todo.id}>
+    <TodoListContainer>
+      {Todos?.length > 0 ? (
+        Todos.map((todo) => (
+          <TodoCard key={todo.id}>
             <div className="todo-title">{todo.Title}</div>
             <div className="todo-description">{todo.Description}</div>
-            <div className="todo-actions">
-              <EditOutlined
-                onClick={() => openEditTodo(todo)}
-                className="edit bg-orange-200"
-              />
-              <DeleteOutlined
-                className="delete bg-orange-200"
-                onClick={() => handleDeleteTodo(todo.id)}
-              />
+            <div className="todo-timestamp">
+              {converUTCtoLoalTime(todo.CreatedAt)}
             </div>
-            <div>{converUTCtoLoalTime(todo.CreatedAt)}</div>
-          </div>
-        ))}
-      {Todos?.length === 0 && <div>Nothing here</div>}
+
+            <div className="todo-actions">
+              <EditOutlined onClick={() => openEditTodo(todo)} />
+              <DeleteOutlined onClick={() => handleDeleteTodo(todo.id)} />
+            </div>
+          </TodoCard>
+        ))
+      ) : (
+        <div>No results found</div>
+      )}
     </TodoListContainer>
   );
 }

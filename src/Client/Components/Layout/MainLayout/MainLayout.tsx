@@ -11,14 +11,16 @@ export default function MainLayout({ children }: MainLayoutPropsType) {
   return (
     <>
       <CustomHead />
-      <div className="flex flex-col gap-2 h-[100vh]">
-        <header className="flex justify-between h-[10%] bg-slate-700 items-center px-8 text-white">
-          <Navbar />
-        </header>
-        <main className="h-auto">{children}</main>
-        <footer className="mt-auto h-[10%]">
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+
+        <main className="flex-1 w-full px-4 md:px-8 py-6 bg-gray-50 overflow-auto">
+          {children}
+        </main>
+
+        {/* <footer className="mt-auto bg-gray-800 text-white py-4 px-8">
           <Footer />
-        </footer>
+        </footer> */}
       </div>
     </>
   );

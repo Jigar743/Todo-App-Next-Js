@@ -1,43 +1,40 @@
 import React from "react";
-import { LoginFormStyled } from "./LoginForm.styled";
+import {
+  LoginFormStyled,
+  LoginContainer,
+  LoginButton,
+  SignupLink,
+} from "./LoginForm.styled";
 import Link from "next/link";
 
 export default function LoginForm() {
   return (
-    <div className="flex flex-col items-center gap-3">
-      <h1 className="text-center font-extrabold text-3xl">Welcome</h1>
-      <LoginFormStyled
-        className={`shadow-md`}
-        onSubmit={(e) => e.preventDefault()}
-      >
+    <LoginContainer>
+      <h1 className="text-center font-extrabold text-3xl mb-4">Welcome</h1>
+
+      <LoginFormStyled onSubmit={(e) => e.preventDefault()}>
         <div>
           <label htmlFor="email">Email</label>
-          <input
-            className="shadow text-gray-700 focus:shadow-outline"
-            id="email"
-            placeholder="Enter email"
-            type="email"
-          />
+          <input id="email" placeholder="Enter email" type="email" required />
         </div>
+
         <div>
           <label htmlFor="password">Password</label>
           <input
-            className="shadow text-gray-700 focus:shadow-outline"
             id="password"
             placeholder="Enter password"
             type="password"
+            required
           />
         </div>
-        <button type="submit" className="bg-orange-200 rounded-lg py-2 px-2">
-          Login
-        </button>
+
+        <LoginButton type="submit">Login</LoginButton>
       </LoginFormStyled>
-      <p className="flex gap-2">
-        Dont have an account?
-        <Link className="text-orange-200" href="/users/signup">
-          Sign up
-        </Link>
+
+      <p className="mt-2 text-sm">
+        Don&apos;t have an account?{" "}
+        <SignupLink href="/users/signup">Sign up</SignupLink>
       </p>
-    </div>
+    </LoginContainer>
   );
 }

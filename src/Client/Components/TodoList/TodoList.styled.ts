@@ -1,45 +1,85 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+// Animation for todo items
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const TodoListContainer = styled.div`
-  width: 75%;
-  margin: auto;
-  padding: 20px 40px;
+  width: 80%;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
+`;
 
-  .todo-container {
-    padding: 10px 20px;
-    position: relative;
+export const TodoCard = styled.div`
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: ${fadeIn} 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+
+  .todo-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .todo-description {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.3;
+  }
+
+  .todo-timestamp {
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  .todo-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     display: flex;
-    flex-direction: column;
     gap: 10px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 
-    .todo-title {
-      font-weight: 500;
-      font-size: x-large;
-    }
-    .todo-description {
-      font-weight: 100;
-      font-size: smaller;
-    }
-    .todo-actions {
-      position: absolute;
-      top: 0;
-      right: 0;
-      transform: translate(0, -50%);
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 5px;
+    .anticon {
+      font-size: 18px;
+      padding: 6px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #444;
 
-      .anticon {
-        padding: 10px;
-        cursor: pointer;
-        font-size: 17px;
-        border-radius: 50%;
+      &:hover {
+        background-color: #ffecb3;
+        color: #ff9800;
+        transform: scale(1.1);
       }
     }
+  }
+
+  &:hover .todo-actions {
+    opacity: 1;
   }
 `;

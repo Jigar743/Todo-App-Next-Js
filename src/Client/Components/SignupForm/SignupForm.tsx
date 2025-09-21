@@ -1,11 +1,11 @@
 import React from "react";
-import { SignupFormStyled } from "./SignupForm.styled";
+import { SignupFormStyled, SignupContainer, SignupButton, LoginLink } from "./SignupForm.styled";
 import Link from "next/link";
 import { useFormik } from "formik";
 import { useMutation } from "@apollo/client";
 import { REGISTER_USER } from "@/Client/Mutation/User.mutation";
 
-type initialValueType = {
+type InitialValueType = {
   firstName: string;
   lastName: string;
   email: string;
@@ -16,7 +16,7 @@ type initialValueType = {
 export default function SignupForm() {
   const [createUser] = useMutation(REGISTER_USER);
 
-  const { handleSubmit, values, errors, handleChange, resetForm } = useFormik({
+  const { handleSubmit, values, handleChange, resetForm } = useFormik<InitialValueType>({
     initialValues: {
       firstName: "",
       lastName: "",
@@ -24,103 +24,101 @@ export default function SignupForm() {
       password: "",
       confirmPassword: "",
     },
-    onSubmit: formSubmit,
+    onSubmit: (values) => {
+      createUser({
+        variables: {
+          input: {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            password: values.confirmPassword,
+          },
+        },
+        onCompleted: (data) => {
+          console.log({ data });
+          resetForm();
+        },
+      });
+    },
   });
 
-  function formSubmit(values: initialValueType) {
-    console.log({ values });
-    createUser({
-      variables: {
-        input: {
-          firstName: values.firstName,
-          lastName: values.lastName,
-          email: values.email,
-          password: values.confirmPassword,
-        },
-      },
-      onCompleted(data, clientOptions) {
-        console.log({ data });
-        resetForm();
-      },
-    });
-  }
-
   return (
-    <div className="flex flex-col items-center gap-3">
-      <h1 className="font-extrabold text-3xl text-center">Sign Up</h1>
+    <SignupContainer>
+      <h1 className="text-center font-extrabold text-3xl mb-4">Sign Up</h1>
+
       <SignupFormStyled onSubmit={handleSubmit}>
-        <div className="flex gap-4 justify-between">
-          <div className="sm:w-full md:w-[50%]">
-            <label htmlFor="first_name">First name</label>
+        <div className="flex gap-4 flex-col md:flex-row">
+          <div className="flex-1 flex flex-col">
+            <label htmlFor="first_name">First Name</label>
             <input
-              className="shadow border w-full rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               id="first_name"
+              name="firstName"
               placeholder="Enter first name"
               type="text"
               value={values.firstName}
-              name="firstName"
               onChange={handleChange}
+              required
             />
           </div>
-          <div className="sm:w-full md:w-[50%]">
-            <label htmlFor="last_name">Last name</label>
+          <div className="flex-1 flex flex-col">
+            <label htmlFor="last_name">Last Name</label>
             <input
-              className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               id="last_name"
+              name="lastName"
               placeholder="Enter last name"
               type="text"
-              name="lastName"
               value={values.lastName}
               onChange={handleChange}
+              required
             />
           </div>
         </div>
+
         <div className="flex flex-col">
           <label htmlFor="email">Email</label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="email"
-            placeholder="Enter Email"
-            type="email"
             name="email"
+            placeholder="Enter email"
+            type="email"
             value={values.email}
             onChange={handleChange}
+            required
           />
         </div>
+
         <div className="flex flex-col">
-          <label htmlFor="passw">Password</label>
+          <label htmlFor="password">Password</label>
           <input
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-            id="passw"
+            id="password"
+            name="password"
             placeholder="Enter password"
             type="password"
-            name="password"
             value={values.password}
             onChange={handleChange}
+            required
           />
         </div>
+
         <div className="flex flex-col">
-          <label htmlFor="c_password">Confirm password</label>
+          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-            id="c_password"
-            placeholder="Enter confirm password"
-            type="password"
+            id="confirmPassword"
             name="confirmPassword"
+            placeholder="Confirm password"
+            type="password"
             value={values.confirmPassword}
             onChange={handleChange}
+            required
           />
         </div>
-        <button type="submit" className="bg-orange-200 rounded-lg py-2 px-2">
-          Sign up
-        </button>
+
+        <SignupButton type="submit">Sign Up</SignupButton>
       </SignupFormStyled>
-      <p className="flex gap-2">
-        Already have an account?
-        <Link className="text-orange-200" href="/users/login">
-          Login
-        </Link>
+
+      <p className="mt-2 text-sm">
+        Already have an account? <LoginLink href="/users/login">Login</LoginLink>
       </p>
-    </div>
+    </SignupContainer>
   );
 }
